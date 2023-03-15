@@ -6,6 +6,8 @@ use JalalLinuX\Pm2\Structure\Process;
 
 class Pm2
 {
+    public static string $PM2_PATH = 'pm2';
+
     /**
      * @param  string  $sortField
      * @param  bool  $desc
@@ -56,7 +58,8 @@ class Pm2
      * @param  string  $value
      * @return Process|null
      */
-    public function findBy(string $key, string $value): ?Process
+    public function
+    findBy(string $key, string $value): ?Process
     {
         foreach ($this->list() as $item) {
             if ($item->{$key} == $value) {
@@ -262,6 +265,6 @@ class Pm2
 
     protected function runCommand(string $command)
     {
-        return shell_exec("pm2 {$command}");
+        return shell_exec(static::$PM2_PATH ." {$command}");
     }
 }
